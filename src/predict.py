@@ -2,7 +2,6 @@ import pandas as pd
 from pathlib import Path
 import joblib
 
-# Убедись, что эти функции импортируются правильно
 from recommendations import get_recommendation
 from validation import validate_student
 
