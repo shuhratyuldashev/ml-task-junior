@@ -1,5 +1,9 @@
 from pathlib import Path
 import joblib
+from recommendations import get_recommendation
+from validation import validate_student
+
+
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 MODEL_PATH_REGRESSION = SCRIPT_DIR / "../models/random_forest_regression_model.pkl"
@@ -8,6 +12,8 @@ MODEL_PATH_CLASSIFICATION = SCRIPT_DIR / "../models/random_forest_classification
 model_random_forest_regression = joblib.load(MODEL_PATH_REGRESSION)
 model_random_forest_classification = joblib.load(MODEL_PATH_CLASSIFICATION)
 
+recommendation = get_recommendation(student, predicted_score, risk_level)
+print(f"Recommendation: {recommendation}")
 
 
 age = int(input("AGE: "))
@@ -28,6 +34,10 @@ learning_format = input("LEARNING FORMAT: ")
 has_part_time_job = input("HAS PART TIME JOB: ")
 internet_access = input("INTERNET ACCESS: ")
 
+try:
+    validate_student(student)
+except ValueError as e:
+    print(e)
 
 print(
     """
